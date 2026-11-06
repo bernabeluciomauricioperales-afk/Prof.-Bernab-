@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storybook Educativo: El Misterio del Quipu Mágico - I.E. N° 0148</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        inca: {
+                            gold: '#D4AF37',
+                            terracotta: '#C85A32',
+                            red: '#8B0000',
+                            navy: '#1A2B4C',
+                            bgLight: '#FDFBF7',
+                            cardLight: '#FFFFFF',
+                            bgDark: '#0F172A',
+                            cardDark: '#1E293B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
+
+    <style>
+        /* Tooltip and highlight styles */
+        .hl-yellow { background-color: #fef08a; color: #1e293b; padding: 2px 4px; border-radius: 4px; }
+        .hl-green { background-color: #bbf7d0; color: #1e293b; padding: 2px 4px; border-radius: 4px; }
+        .hl-blue { background-color: #bfdbfe; color: #1e293b; padding: 2px 4px; border-radius: 4px; }
+        
+        .dark .hl-yellow { background-color: #854d0e; color: #fef08a; }
+        .dark .hl-green { background-color: #166534; color: #bbf7d0; }
+        .dark .hl-blue { background-color: #1e40af; color: #bfdbfe; }
+
+        .glossary-term {
+            border-bottom: 2px dotted #C85A32;
+            color: #C85A32;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .glossary-term:hover {
+            background-color: rgba(200, 90, 50, 0.15);
+            border-bottom-style: solid;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C85A32;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-inca-bgLight text-slate-800 dark:bg-inca-bgDark dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-300">
+
+    <!-- TOP HEADER / BRANDING BANNER -->
+    <header class="sticky top-0 z-40 bg-white/95 dark:bg-inca-cardDark/95 backdrop-blur border-b border-amber-200/50 dark:border-slate-700 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Institution Logo & Details -->
+            <div class="flex items-center space-x-3">
+                <!-- SVG Escudo Institucional Oficial -->
+                <div class="w-14 h-16 sm:w-16 sm:h-20 flex-shrink-0">
+                    <svg viewBox="0 0 200 240" class="w-full h-full drop-shadow-md">
+                        <!-- Red and White Peruvian Shield Shield Base -->
+                        <defs>
+                            <linearGradient id="peruFlag" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#D91023" />
+                                <stop offset="33%" stop-color="#D91023" />
+                                <stop offset="33%" stop-color="#FFFFFF" />
+                                <stop offset="66%" stop-color="#FFFFFF" />
+                                <stop offset="66%" stop-color="#D91023" />
+                                <stop offset="100%" stop-color="#D91023" />
+                            </linearGradient>
+                            <linearGradient id="goldBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#FFE066" />
+                                <stop offset="100%" stop-color="#D4AF37" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Main Shield Shape -->
+                        <path d="M 20 20 L 180 20 L 180 140 C 180 190 100 220 100 220 C 100 220 20 190 20 140 Z" fill="url(#peruFlag)" stroke="url(#goldBorder)" stroke-width="6"/>
+                        
+                        <!-- Laurel Wreath Leaves Left -->
+                        <path d="M 12 60 Q 0 100 20 170 Q 30 130 20 80 Z" fill="#15803D" opacity="0.8"/>
+                        <!-- Laurel Wreath Leaves Right -->
+                        <path d="M 188 60 Q 200 100 180 170 Q 170 130 180 80 Z" fill="#15803D" opacity="0.8"/>
+
+                        <!-- Peru Map in Center -->
+                        <path d="M 90 60 C 85 70 75 75 75 85 C 75 95 85 105 90 115 C 95 125 105 135 110 130 C 115 120 125 105 120 95 C 115 85 110 75 100 65 Z" fill="#D4AF37" stroke="#8B0000" stroke-width="1.5"/>
+                        
+                        <!-- Number 148 inside Map -->
+                        <text x="96" y="98" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="#8B0000" text-anchor="middle">148</text>
+
+                        <!-- Siglas I.E. top left, MVRHT top right -->
+                        <text x="48" y="50" font-family="Arial, sans-serif" font-weight="bold" font-size="16" fill="#111827">I.E.</text>
+                        <text x="125" y="50" font-family="Arial, sans-serif" font-weight="bold" font-size="13" fill="#111827">MVRHT</text>
+
+                        <!-- Ribbons / Text banners -->
+                        <rect x="35" y="150" width="130" height="20" rx="4" fill="#1E293B" stroke="#D4AF37" stroke-width="1"/>
+                        <text x="100" y="164" font-family="Arial, sans-serif" font-weight="bold" font-size="11" fill="#FFFFFF" text-anchor="middle">S.J.L. - AIP</text>
+
+                        <rect x="25" y="175" width="150" height="18" rx="4" fill="#8B0000" stroke="#D4AF37" stroke-width="1"/>
+                        <text x="100" y="188" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#FFFFFF" text-anchor="middle">NIVEL SECUNDARIA - 2026</text>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-xs sm:text-sm font-bold tracking-wide uppercase text-amber-700 dark:text-amber-400">
+                        I.E. N° 0148 "Maestro Víctor Raúl Haya de la Torre"
+                    </h1>
+                    <p class="text-xs text-slate-500 dark:text-slate-400">
+                        <i class="fa-solid fa-location-dot text-red-600 mr-1"></i> San Juan de Lurigancho &bull; <i class="fa-solid fa-desktop text-blue-600 mr-1"></i> Aula de Innovación Pedagógica (AIP)
+                    </p>
+                    <p class="text-[11px] font-semibold text-slate-700 dark:text-slate-300">
+                        Área: Ciencias Sociales &bull; Nivel Secundaria (2026)
+                    </p>
+                </div>
+            </div>
+
+            <!-- Gamification Status & Accessibility Controls -->
+            <div class="flex items-center space-x-3 sm:space-x-4">
+                <!-- Stars & Score -->
+                <div class="flex items-center bg-amber-50 dark:bg-slate-800 border border-amber-300 dark:border-amber-600/50 rounded-full px-3 py-1 shadow-sm">
+                    <i class="fa-solid fa-star text-amber-500 text-base mr-1.5 animate-pulse"></i>
+                    <span id="starCounter" class="font-bold text-amber-800 dark:text-amber-300 text-sm">0</span>
+                    <span class="text-xs text-slate-500 dark:text-slate-400 ml-1">estrellas</span>
+                </div>
+
+                <!-- Font Resizer -->
+                <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 border border-slate-200 dark:border-slate-700">
+                    <button id="btnFontDec" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition" title="Disminuir tamaño de letra">A-</button>
+                    <button id="btnFontReset" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition" title="Restablecer letra">A</button>
+                    <button id="btnFontInc" class="px-2 py-0.5 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded transition" title="Aumentar tamaño de letra">A+</button>
+                </div>
+
+                <!-- Dark/Light Theme Toggle -->
+                <button id="themeToggleBtn" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-amber-400 hover:bg-slate-200 dark:hover:bg-slate-700 transition" title="Cambiar tema día/noche">
+                    <i class="fa-solid fa-moon text-base dark:hidden"></i>
+                    <i class="fa-solid fa-sun text-base hidden dark:inline"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-200 dark:bg-slate-800 h-2">
+            <div id="progressBar" class="bg-gradient-to-r from-amber-500 to-amber-700 h-2 w-0 transition-all duration-500"></div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- LEFT SIDEBAR: CHAPTER NAVIGATION & HIGH-LIGHTER TOOLBAR -->
+        <aside class="lg:col-span-3 space-y-6">
+            
+            <!-- Chapter Selector Card -->
+            <div class="bg-white dark:bg-inca-cardDark rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3 flex items-center">
+                    <i class="fa-solid fa-book-bookmark text-inca-terracotta mr-2"></i> Capítulos del Cuento
+                </h3>
+                <nav class="space-y-2" id="chapterNav">
+                    <button data-cap="1" class="cap-btn w-full text-left p-3 rounded-xl border border-amber-300 bg-amber-50 dark:bg-slate-800 dark:border-amber-600/50 flex items-center justify-between font-medium transition">
+                        <span class="text-sm font-semibold text-amber-900 dark:text-amber-300">Cap. 1: Esplendor del Tahuantinsuyo</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-amber-600"></i>
+                    </button>
+                    <button data-cap="2" class="cap-btn w-full text-left p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-between text-sm transition">
+                        <span class="font-semibold text-slate-700 dark:text-slate-300">Cap. 2: Encuentro de Dos Mundos</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                    <button data-cap="3" class="cap-btn w-full text-left p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-between text-sm transition">
+                        <span class="font-semibold text-slate-700 dark:text-slate-300">Cap. 3: Caída y Resistencia Andina</span>
+                        <i class="fa-solid fa-chevron-right text-xs text-slate-400"></i>
+                    </button>
+                </nav>
+            </div>
+
+            <!-- Interactive Highlighting Tool Box -->
+            <div class="bg-white dark:bg-inca-cardDark rounded-2xl p-4 shadow-sm border border-slate-200 dark:border-slate-700">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2 flex items-center">
+                    <i class="fa-solid fa-highlighter text-amber-500 mr-2"></i> Plumón Resaltador
+                </h3>
+                <p class="text-xs text-slate-600 dark:text-slate-400 mb-3">
+                    Selecciona cualquier texto de la historia y haz clic en un color pedagógico:
+                </p>
+                <div class="grid grid-cols-1 gap-2">
+                    <button id="hlYellowBtn" class="flex items-center justify-between p-2 rounded-lg bg-yellow-100 hover:bg-yellow-200 text-yellow-900 text-xs font-semibold border border-yellow-300 transition">
+                        <span><i class="fa-solid fa-marker mr-1.5 text-yellow-600"></i> Idea Principal</span>
+                        <span class="text-[10px] bg-yellow-200 px-1.5 py-0.5 rounded">Amarillo</span>
+                    </button>
+                    <button id="hlGreenBtn" class="flex items-center justify-between p-2 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-900 text-xs font-semibold border border-emerald-300 transition">
+                        <span><i class="fa-solid fa-book text-emerald-600 mr-1.5"></i> Concepto Nuevo</span>
+                        <span class="text-[10px] bg-emerald-200 px-1.5 py-0.5 rounded">Verde</span>
+                    </button>
+                    <button id="hlBlueBtn" class="flex items-center justify-between p-2 rounded-lg bg-blue-100 hover:bg-blue-200 text-blue-900 text-xs font-semibold border border-blue-300 transition">
+                        <span><i class="fa-solid fa-circle-question text-blue-600 mr-1.5"></i> Duda / Pregunta</span>
+                        <span class="text-[10px] bg-blue-200 px-1.5 py-0.5 rounded">Azul</span>
+                    </button>
+                </div>
+                <button id="btnClearHL" class="w-full mt-3 py-1.5 text-xs text-slate-500 hover:text-red-600 dark:text-slate-400 dark:hover:text-red-400 border border-dashed border-slate-300 dark:border-slate-700 rounded-lg transition flex items-center justify-center">
+                    <i class="fa-solid fa-trash-can mr-1.5"></i> Limpiar mis resaltados
+                </button>
+            </div>
+
+            <!-- Pedagogy & CNEB Badges -->
+            <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-slate-800 dark:to-slate-800/80 rounded-2xl p-4 border border-amber-200/60 dark:border-slate-700">
+                <div class="flex items-center mb-2">
+                    <span class="bg-amber-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase mr-2">CNEB</span>
+                    <h4 class="text-xs font-bold text-slate-800 dark:text-slate-200">Competencia Evaluada</h4>
+                </div>
+                <p class="text-xs text-slate-600 dark:text-slate-300 font-medium">
+                    "Construye interpretaciones históricas"
+                </p>
+                <ul class="text-[11px] text-slate-500 dark:text-slate-400 mt-2 space-y-1 list-disc list-inside">
+                    <li>Interpreta críticamente fuentes diversas.</li>
+                    <li>Comprende el tiempo histórico.</li>
+                    <li>Elabora explicaciones sobre procesos históricos.</li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- MAIN READING AREA & ACTIVITIES -->
+        <section class="lg:col-span-9 space-y-6">
+
+            <!-- Banner Title -->
+            <div class="bg-gradient-to-r from-inca-terracotta via-amber-600 to-amber-700 text-white rounded-3xl p-6 sm:p-8 shadow-lg relative overflow-hidden">
+                <div class="absolute -right-6 -bottom-6 opacity-15 pointer-events-none">
+                    <i class="fa-solid fa-scroll text-9xl"></i>
+                </div>
+                <div class="relative z-10">
+                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-amber-400 text-slate-900 mb-3 shadow-sm">
+                        <i class="fa-solid fa-mask mr-1.5"></i> Storybook Interactivo
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-amber-50">
+                        El Misterio del Quipu Mágico: Un Viaje por la Conquista del Tahuantinsuyo
+                    </h2>
+                    <p class="text-xs sm:text-sm text-amber-100 mt-2 max-w-2xl">
+                        Acompaña a <strong>Sophi</strong>, estudiante de la I.E. N° 0148 en San Juan de Lurigancho, y a <strong>Yaku</strong>, el joven guardián del tiempo, en una aventura interactiva para comprender nuestro pasado incaico y colonial.
+                    </p>
+                </div>
+            </div>
+
+            <!-- MAIN STORY CONTAINER -->
+            <article id="storyContentCard" class="bg-white dark:bg-inca-cardDark rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-700 transition-all">
+                
+                <!-- Chapter Header -->
+                <div class="border-b border-slate-200 dark:border-slate-700 pb-4 mb-6 flex flex-wrap items-center justify-between gap-2">
+                    <div>
+                        <span id="chapterBadge" class="text-xs font-bold text-inca-terracotta uppercase tracking-wider">Capítulo 1</span>
+                        <h3 id="chapterTitle" class="text-xl sm:text-2xl font-serif font-bold text-slate-900 dark:text-amber-100">
+                            El Esplendor del Tahuantinsuyo
+                        </h3>
+                    </div>
+                    <div class="flex items-center space-x-2 text-xs text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-full">
+                        <i class="fa-solid fa-eye text-amber-600"></i>
+                        <span>Haz clic en palabras subrayadas para audio y significado</span>
+                    </div>
+                </div>
+
+                <!-- Story Text Render Body -->
+                <div id="storyTextBody" class="prose prose-slate dark:prose-invert max-w-none font-serif text-base sm:text-lg leading-relaxed space-y-6">
+                    <!-- Dynamic Content populated by JS -->
+                </div>
+
+            </article>
+
+            <!-- HISTORICAL SOURCE & FACT CHECK SECTION -->
+            <div id="historicalSourceCard" class="bg-amber-50/70 dark:bg-slate-800/80 rounded-3xl p-6 border-2 border-amber-300/70 dark:border-amber-600/50 shadow-sm space-y-4">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="p-2 bg-amber-500 text-white rounded-lg shadow-sm">
+                            <i class="fa-solid fa-building-columns text-sm"></i>
+                        </span>
+                        <h4 class="font-serif font-bold text-slate-900 dark:text-amber-200 text-base">
+                            Fuente Histórica Real y Análisis Crítico
+                        </h4>
+                    </div>
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-amber-800 dark:text-amber-300 bg-amber-200/60 dark:bg-amber-900/40 px-2.5 py-1 rounded-full">
+                        Evidencia Histórica
+                    </span>
+                </div>
+                
+                <div id="sourceContent" class="text-sm text-slate-700 dark:text-slate-300 font-serif italic bg-white dark:bg-inca-cardDark p-4 rounded-xl border border-amber-200 dark:border-slate-700 leading-relaxed">
+                    <!-- Source text loaded via JS -->
+                </div>
+
+                <div id="sourceQuestionBox" class="bg-white dark:bg-inca-cardDark p-4 rounded-xl border border-slate-200 dark:border-slate-700 space-y-3">
+                    <!-- Source analysis task populated via JS -->
+                </div>
+            </div>
+
+            <!-- CHAPTER GAMIFIED EVALUATION / ACTIVITIES -->
+            <div id="activitiesCard" class="bg-white dark:bg-inca-cardDark rounded-3xl p-6 sm:p-8 shadow-md border border-slate-200 dark:border-slate-700 space-y-6">
+                <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="p-2.5 bg-inca-terracotta text-white rounded-xl shadow-sm">
+                            <i class="fa-solid fa-gamepad text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-slate-100">
+                                Desafíos de Aprendizaje y Gamificación
+                            </h3>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">
+                                Responde correctamente para ganar estrellas y avanzar en el Quipu del Tiempo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Container Dynamic -->
+                <div id="activityContainer" class="space-y-6">
+                    <!-- Populated dynamically per chapter -->
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-inca-cardDark border-t border-slate-200 dark:border-slate-800 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500 dark:text-slate-400 space-y-2">
+            <p class="font-medium text-slate-700 dark:text-slate-300">
+                I.E. N° 0148 "Maestro Víctor Raúl Haya de la Torre" &bull; San Juan de Lurigancho (S.J.L.)
+            </p>
+            <p>
+                Recurso Educativo Digital interactivo para el Aula de Innovación Pedagógica (AIP) &bull; Nivel Secundaria &bull; Perú 2026
+            </p>
+            <p class="text-[11px] text-slate-400">
+                Alineado al Currículo Nacional de la Educación Básica (CNEB) &bull; Área de Ciencias Sociales
+            </p>
+        </div>
+    </footer>
+
+    <!-- GLOSSARY AUDIO MODAL -->
+    <div id="glossaryModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white dark:bg-inca-cardDark rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-amber-300 dark:border-amber-600/50 space-y-4 animate-in fade-in zoom-in duration-200">
+            <div class="flex items-start justify-between border-b border-slate-200 dark:border-slate-700 pb-3">
+                <div class="flex items-center space-x-2">
+                    <span class="p-2 bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 rounded-xl">
+                        <i class="fa-solid fa-book-atlas text-lg"></i>
+                    </span>
+                    <div>
+                        <h3 id="modalTerm" class="text-xl font-bold font-serif text-slate-900 dark:text-amber-300">Término</h3>
+                        <p id="modalEtymology" class="text-xs text-slate-500 dark:text-slate-400 italic">Etimología...</p>
+                    </div>
+                </div>
+                <button id="btnCloseModal" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-xl font-bold p-1">&times;</button>
+            </div>
+
+            <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                <div>
+                    <h5 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Definición:</h5>
+                    <p id="modalDefinition" class="mt-0.5 leading-relaxed">...</p>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Contexto Histórico CNEB:</h5>
+                    <p id="modalContext" class="mt-0.5 leading-relaxed bg-amber-50/50 dark:bg-slate-800 p-2.5 rounded-xl border border-amber-100 dark:border-slate-700">...</p>
+                </div>
+                <div>
+                    <h5 class="text-xs font-bold text-amber-700 dark:text-amber-400 uppercase tracking-wider">Ejemplo de Uso:</h5>
+                    <p id="modalExample" class="mt-0.5 italic text-slate-600 dark:text-slate-400">...</p>
+                </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center">
+                <button id="btnTTS" class="bg-gradient-to-r from-amber-500 to-inca-terracotta hover:from-amber-600 hover:to-amber-800 text-white px-4 py-2 rounded-xl text-xs font-bold flex items-center space-x-2 shadow-md transition">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                    <span>Escuchar Pronunciación (TTS)</span>
+                </button>
+                <button id="btnCloseModalBottom" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700">
+                    Cerrar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT APPLICATION LOGIC -->
+    <script>
+        /* ==========================================================================
+           1. GLOSSARY DATA BANK (CNEB COMPLIANT WITH TTS & ETYMOLOGY)
+           ========================================================================== */
+        const GLOSSARY = {
+            "Tahuantinsuyo": {
+                term: "Tahuantinsuyo",
+                etymology: "Del quechua Tawa (cuatro), Suyu (región o territorio) y Nti (sufijo de inclusión): 'Las cuatro regiones unidas entre sí'.",
+                definition: "Nombre original del gran Imperio incaico que abarcó gran parte de la cordillera de los Andes en América del Sur.",
+                context: "Estaba dividido en 4 suyos: Chinchaysuyo (norte), Antisuyo (este), Contisuyo (oeste) y Collasuyo (sur), teniendo al Cusco como ombligo y capital.",
+                example: "En su máximo esplendor, el Tahuantinsuyo integró a diversos pueblos bajo una compleja red de caminos conocida como Qhapaq Ñan."
+            },
+            "ayllu": {
+                term: "Ayllu",
+                etymology: "Término quechua que designa a la comunidad extensa unida por lazos de parentesco, territorio y trabajo recíproco.",
+                definition: "Base de la organización social y económica andina. Conjunto de familias que compartían una misma tierra (topo) y veneraban a los mismos antepasados.",
+                context: "El ayllu garantizaba la subsistencia de sus miembros mediante el apoyo mutuo y la producción agrícola comunitaria.",
+                example: "Los miembros del ayllu se ayudaban mutuamente en la siembra del maíz aplicando el principio del ayni."
+            },
+            "quipu": {
+                term: "Quipu",
+                etymology: "Del quechua khipu, que significa 'nudo'.",
+                definition: "Sistema de contabilidad y registro de información mediante cuerdas de lana o algodón de diversos colores con nudos.",
+                context: "Eran administrados por los quipucamayoc para llevar el control demográfico, cosechas, tributos en trabajo y censos del Imperio.",
+                example: "Sophi observó cómo Yaku descifraba los nudos del quipu para revelar la historia de las cosechas del Inca."
+            },
+            "Sapa Inca": {
+                term: "Sapa Inca",
+                etymology: "Del quechua Sapa (único) e Inca (gobernante/rey): 'El Único Señor'.",
+                definition: "Máxima autoridad política, militar y religiosa del Tahuantinsuyo, considerado hijo sagrado del Dios Sol (Inti).",
+                context: "Su poder era absoluto pero estaba regido por complejas alianzas con los curacas locales y rituales de redistribución.",
+                example: "El Sapa Inca Pachacútec ordenó la reorganización del imperio y la edificación de monumentales centros administrativos."
+            },
+            "curaca": {
+                term: "Curaca",
+                etymology: "Del quechua kuraka, que significa 'el señor mayor' o 'jefe de grupo'.",
+                definition: "Jefe o autoridad política y administrativa de un ayllu o étnia.",
+                context: "Nexo fundamental entre el Estado incaico y los miembros del ayllu. Organizaba la mano de obra para la mit'a.",
+                example: "El curaca se encargaba de distribuir las tierras agrícolas a las familias recién casadas."
+            },
+            "mit'a": {
+                term: "Mit'a",
+                etymology: "Del quechua mit'a, que significa 'turno', 'estación' o 'tiempo de trabajo'.",
+                definition: "Sistema de trabajo obligatorio, rotativo y por turnos que los miembros del ayllu prestaban al Estado incaico.",
+                context: "Utilizado para construir caminos, fortalezas, andenes y trabajar las tierras del Sol y del Inca.",
+                example: "Durante la mit'a, los jóvenes del ayllu colaboraron en la edificación de los andenes de cultivo."
+            },
+            "reciprocidad": {
+                term: "Reciprocidad",
+                etymology: "Principio socioeconómico andino ('Hoy por ti, mañana por mí').",
+                definition: "Intercambio continuo de trabajo, bienes o servicios entre miembros de una comunidad o entre ayllus (Ayni y Minka).",
+                context: "Eje ético y económico andino. Existía reciprocidad simétrica (entre iguales del ayllu) y asimétrica (con el Inca o curaca).",
+                example: "La reciprocidad permitía que las familias ayudaran a construir la casa de los recién casados."
+            },
+            "redistribución": {
+                term: "Redistribución",
+                etymology: "Proceso económico administrado por el Estado incaico.",
+                definition: "Mecanismo por el cual el Estado recolectaba los excedentes de producción generados por la mit'a y los almacenaba en colcas.",
+                context: "Los bienes almacenados se repartían a la población en periodos de sequía, guerras o festividades públicas.",
+                example: "Gracias a la redistribución, el Estado Inca distribuía ropa y alimentos a las zonas afectadas por heladas."
+            },
+            "Cajamarca": {
+                term: "Cajamarca",
+                etymology: "Del quechua Kasha Marka, que significa 'pueblo o tierra de espinas'.",
+                definition: "Ciudad histórica del norte andino peruano donde ocurrió el trágico encuentro entre Atahualpa y Francisco Pizarro en 1532.",
+                context: "Punto de quiebre en la historia andina. Escenario de la captura del Inca en la plaza principal el 16 de noviembre de 1532.",
+                example: "En Cajamarca se ofreció el famoso cuarto del rescate lleno de oro y plata."
+            },
+            "Vilcabamba": {
+                term: "Vilcabamba",
+                etymology: "Del quechua Willka Pampa, 'Llanura de los abuelos/sagrada' o 'Valle de los nietos'.",
+                definition: "Último baluarte de la resistencia incaica en la selva alta del Cusco entre 1536 y 1572.",
+                context: "Sede del gobierno de los Incas de Vilcabamba (Manco Inca, Sayri Túpac, Titu Cusi Yupanqui y Túpac Amaru I).",
+                example: "Manco Inca organizó la resistencia desde Vilcabamba tras el cerco de Cusco y Lima."
+            },
+            "encomienda": {
+                term: "Encomienda",
+                etymology: "Institución socioeconómica hispana implantada en América colonial.",
+                definition: "Sistema mediante el cual la Corona española otorgaba un grupo de indígenas a un conquistador (encomendero).",
+                context: "El encomendero cobraba tributos y exigía trabajo a los indígenas a cambio de una supuesta evangelización y protección.",
+                example: "La encomienda derivó en severos abusos sobre las poblaciones indígenas durante el siglo XVI."
+            },
+            "resistencia": {
+                term: "Resistencia Andina",
+                etymology: "Proceso histórico de lucha y preservación cultural.",
+                definition: "Respuesta de la población autóctona e incaica para defender su soberanía, religión y costumbres frente a la dominación española.",
+                context: "Abarcó tanto la lucha armada (Manco Inca) como la resistencia religiosa y cultural (Taki Unquy).",
+                example: "La resistencia andina permitió que muchas tradiciones y el idioma quechua perduren hasta hoy."
+            }
+        };
+
+        /* ==========================================================================
+           2. STORYBOOK CHAPTER CONTENT (FICTION + HISTORICAL FACTS + SOURCES)
+           ========================================================================== */
+        const CHAPTERS = [
+            {
+                id: 1,
+                title: "El Esplendor del Tahuantinsuyo",
+                badge: "Capítulo 1 &bull; Organización del Imperio",
+                content: `
+                    <div class="p-4 bg-amber-50 dark:bg-slate-800 rounded-2xl border-l-4 border-inca-terracotta mb-4">
+                        <span class="text-xs font-bold text-inca-terracotta uppercase tracking-wider block mb-1">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Ficción Educativa - El Viaje de Sophi y Yaku
+                        </span>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm italic">
+                            Sophi, una estudiante de secundaria en San Juan de Lurigancho, se encontraba explorando el Aula de Innovación Pedagógica (AIP) de su colegio I.E. N° 0148 "Maestro Víctor Raúl Haya de la Torre". De pronto, un antiguo quipu expuesto en la vitrina comenzó a destellar en tonos dorados. Al tocarlo, un joven de túnica fina llamado Yaku se presentó como el guardián del quipu del tiempo.
+                        </p>
+                    </div>
+
+                    <p>
+                        —¡Bienvenida al siglo XV, Sophi! —exclamó Yaku extendiendo su mano hacia un impresionante valle transformado por andenes verdes—. Contempla el gran imperio del <span class="glossary-term" onclick="openGlossary('Tahuantinsuyo')">Tahuantinsuyo</span>. Desde el Cusco, el "ombligo del mundo", el gobernante supremo conocido as el <span class="glossary-term" onclick="openGlossary('Sapa Inca')">Sapa Inca</span> administra las cuatro vastas regiones o suyos.
+                    </p>
+
+                    <p>
+                        Sophi observó asombrada cómo cientos de pobladores trabajaban alegres en las laderas de las montañas. Yaku le explicó que la base de toda la sociedad no era el individuo aislado, sino el <span class="glossary-term" onclick="openGlossary('ayllu')">ayllu</span>: familias unidas por parentesco que compartían la tierra y se gobernaban bajo la guía de un respetado <span class="glossary-term" onclick="openGlossary('curaca')">curaca</span>.
+                    </p>
+
+                    <div class="p-4 bg-blue-50 dark:bg-slate-800 rounded-2xl border-l-4 border-blue-500 my-4">
+                        <span class="text-xs font-bold text-blue-700 dark:text-blue-400 uppercase tracking-wider block mb-1">
+                            <i class="fa-solid fa-scale-balanced mr-1"></i> Conceptos Económicos Clave del CNEB
+                        </span>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm">
+                            En el Imperio incaico no existía la moneda ni el comercio con dinero. La economía se basaba en dos principios fundamentales:
+                        </p>
+                        <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 mt-2 space-y-1">
+                            <li><strong><span class="glossary-term" onclick="openGlossary('reciprocidad')">Reciprocidad</span>:</strong> Ayuda mutua organizada entre las familias del ayllu (Ayni).</li>
+                            <li><strong><span class="glossary-term" onclick="openGlossary('redistribución')">Redistribución</span>:</strong> El Estado entregaba bienes almacenados a los ayllus que habían trabajado en la <span class="glossary-term" onclick="openGlossary('mit\'a')">mit'a</span>.</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        Yaku sacó un hermoso conjunto de cuerdas con nudos de colores de su morral:
+                        —Mira esto, Sophi. Esto es un <span class="glossary-term" onclick="openGlossary('quipu')">quipu</span>. No usamos letras escritas como los europeos, pero a través de estos nudos y colores, los quipucamayoc llevamos la contabilidad exacta de la población, los almacenes estatales y la mano de obra disponible para la producción agrícola.
+                    </p>
+                `,
+                source: {
+                    title: "Garcilaso de la Vega - Comentarios Reales de los Incas (1609)",
+                    text: "«No vendían ni compraban cosa alguna por moneda... Las tierras se repartían cada año y a cada uno se le daba su topo de tierra para sustentación de su familia. El trabajo de las tierras del Inca y del Sol se hacía con grandes fiestas y cantares, viniendo todos los del ayllu en alegre comunidad...»",
+                    question: "¿Qué principio económico incaico se evidencia cuando la comunidad trabaja alegremente las tierras para el sustento común y el Estado?",
+                    options: ["A) Comercio con moneda de oro", "B) Reciprocidad y trabajo comunitario del ayllu", "C) Pago de impuestos en efectivo", "D) Propiedad privada individual de la tierra"],
+                    correct: 1,
+                    explanation: "Correcto. La sociedad andina basaba su economía en el trabajo comunitario recíproco dentro del ayllu sin necesidad de moneda."
+                },
+                activity: {
+                    type: "mcq",
+                    question: "¿Cuál era la función principal del sistema de la 'mit'a' en el Tahuantinsuyo?",
+                    options: [
+                        "Construir exclusivamente estatuas de oro para el Inca.",
+                        "Trabajar obligatoria y rotativamente en obras públicas y tierras del Estado a cambio de redistribución.",
+                        "Comerciar productos agrícolas con países de otros continentes.",
+                        "Elegir libremente al nuevo Sapa Inca mediante votación."
+                    ],
+                    correct: 1,
+                    explanation: "¡Muy bien! La mit'a era un turno de trabajo obligatorio estatal para construir caminos, andenes y alimentar los almacenes del imperio."
+                }
+            },
+            {
+                id: 2,
+                title: "El Encuentro de Dos Mundos",
+                badge: "Capítulo 2 &bull; Contacto, Conflicto y Cajamarca",
+                content: `
+                    <div class="p-4 bg-amber-50 dark:bg-slate-800 rounded-2xl border-l-4 border-inca-terracotta mb-4">
+                        <span class="text-xs font-bold text-inca-terracotta uppercase tracking-wider block mb-1">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Ficción Educativa - La Grieta en el Tiempo
+                        </span>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm italic">
+                            Yaku agitó una cuerda roja del quipu mágico y el paisaje andino apacible se tornó agitado. Las nubes se oscurecieron sobre los caminos del norte. Sophi y Yaku aparecieron observando desde una colina la ciudad de Cajamarca en noviembre de 1532.
+                        </p>
+                    </div>
+
+                    <p>
+                        —¿Por qué hay tanta tensión en el ambiente, Yaku? —preguntó Sophi preocupada.
+                        —El Tahuantinsuyo atraviesa una devastadora crisis —respondió Yaku—. Tras la muerte del Inca Huayna Cápac y su heredero por una extraña viruela traída de afuera, sus dos hijos, Huáscar y Atahualpa, se enfrentaron en una sangrienta guerra civil por el control del trono. Atahualpa acaba de vencer a las tropas de Huáscar, pero el imperio ha quedado fracturado y exhausto.
+                    </p>
+
+                    <p>
+                        En ese escenario de división interna hicieron su ingreso los españoles dirigidos por Francisco Pizarro, en su tercer viaje de conquista. Aprovechando el descontento de etnias locales (como los huancas y cañaris) sometidas por los incas, los españoles marcharon hacia <span class="glossary-term" onclick="openGlossary('Cajamarca')">Cajamarca</span>.
+                    </p>
+
+                    <div class="p-4 bg-red-50 dark:bg-slate-800 rounded-2xl border-l-4 border-red-600 my-4">
+                        <span class="text-xs font-bold text-red-700 dark:text-red-400 uppercase tracking-wider block mb-1">
+                            <i class="fa-solid fa-hourglass-start mr-1"></i> Acontecimientos Clave en Cajamarca (1532 - 1533)
+                        </span>
+                        <ul class="list-disc list-inside text-sm text-slate-700 dark:text-slate-300 space-y-1">
+                            <li><strong>16 de Noviembre de 1532:</strong> Captura sorpresiva del Inca Atahualpa en la plaza de Cajamarca.</li>
+                            <li><strong>El Rescate:</strong> Atahualpa ofrece llenar un cuarto de oro y dos de plata a cambio de su libertad.</li>
+                            <li><strong>26 de Julio de 1533:</strong> Pjetivo fallido: A pesar de la entrega del rescate, Atahualpa es ejecutado tras un juicio expedito.</li>
+                        </ul>
+                    </div>
+
+                    <p>
+                        Sophi observó con asombro el choque cultural. Yaku le explicó que la rápida caída del imperio no se debió solo al armamento europeo o a los caballos, sino principalmente a los <strong>factores políticos y sociales internos</strong>: las alianzas de curacas regionales rebeldes con los conquistadores y la división fratricida incaica.
+                    </p>
+                `,
+                source: {
+                    title: "Pedro Cieza de León - Crónica del Perú (1553)",
+                    text: "«Si la tierra no estuviera dividida con las guerras de Huáscar y Atahualpa, no pudiéramos los españoles entrar ni ganar el reino... porque eran muchos y muy guerreros, pero hallamos la tierra dividida y a los mismos indios dándonos auxilio y guía...»",
+                    question: "Según el cronista Cieza de León, ¿cuál fue el factor determinante que facilitó la conquista española?",
+                    options: [
+                        "A) La superioridad numérica absoluta de los conquistadores españoles",
+                        "B) La división interna inca por la guerra civil y las alianzas de etnias indígenas con los españoles",
+                        "C) La falta de caminos y fortalezas en los Andes",
+                        "D) La intervención militar de otros reinos europeos"
+                    ],
+                    correct: 1,
+                    explanation: "¡Excelente análisis! Las investigaciones históricas y crónicas coinciden en que la división interna y las alianzas étnicas fueron la causa principal."
+                },
+                activity: {
+                    type: "ordering",
+                    question: "Ordena cronológicamente los siguientes acontecimientos de la Conquista:",
+                    items: [
+                        { id: "1", text: "Guerra civil sangrienta entre los hermanos Huáscar y Atahualpa." },
+                        { id: "2", text: "Llegada e ingreso de Francisco Pizarro a la plaza de Cajamarca." },
+                        { id: "3", text: "Captura sorpresiva del Inca Atahualpa en noviembre de 1532." },
+                        { id: "4", text: "Ofrecimiento y entrega del monumental Cuarto del Rescate." }
+                    ]
+                }
+            },
+            {
+                id: 3,
+                title: "La Caída y la Resistencia Andina",
+                badge: "Capítulo 3 &bull; Cusco, Vilcabamba y Cambios Culturales",
+                content: `
+                    <div class="p-4 bg-amber-50 dark:bg-slate-800 rounded-2xl border-l-4 border-inca-terracotta mb-4">
+                        <span class="text-xs font-bold text-inca-terracotta uppercase tracking-wider block mb-1">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> Ficción Educativa - El Clamor de Vilcabamba
+                        </span>
+                        <p class="text-slate-700 dark:text-slate-300 text-sm italic">
+                            Yaku ajustó los nudos finales del quipu mágico. Sophi sintió el estruendo de caballos y tambores guerreros en la majestuosa capital del Cusco en 1536. La marcha de la historia no se había detenido con la muerte de Atahualpa.
+                        </p>
+                    </div>
+
+                    <p>
+                        Tras ocupar la ciudad del Cusco, los conquistadores nombraron inicialmente a Manco Inca como gobernante títere. Sin embargo, al percatarse de las verdaderas intenciones de codicia y dominio abusivo de los españoles, Manco Inca logró escapar e inició la gran rebelión de 1536.
+                    </p>
+
+                    <p>
+                        —¡Manco Inca sitió Cusco y envió a sus capitanes como Kisu Yupanqui a cercar Lima! —explicó Yaku con orgullo heroico—. Tras intensas batallas, Manco Inca se replegó hacia las profundidades de la selva en <span class="glossary-term" onclick="openGlossary('Vilcabamba')">Vilcabamba</span>, fundando la dinastia de los Incas de Vilcabamba que mantuvo la <span class="glossary-term" onclick="openGlossary('resistencia')">resistencia</span> durante casi 40 años hasta 1572.
+                    </p>
+
+                    <div class="p-4 bg-emerald-50 dark:bg-slate-800 rounded-2xl border-l-4 border-emerald-600 my-4">
+                        <span class="text-xs font-bold text-emerald-800 dark:text-emerald-400 uppercase tracking-wider block mb-1">
+                            <i class="fa-solid fa-arrows-rotate mr-1"></i> Análisis de Cambios y Continuidades (CNEB)
+                        </span>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-700 dark:text-slate-300 mt-2">
+                            <div class="p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-emerald-200 dark:border-slate-700">
+                                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">CAMBIOS:</strong>
+                                Impostura de la <span class="glossary-term" onclick="openGlossary('encomienda')">encomienda</span>, declive demográfico indígena, introducción del idioma español, religión católica y moneda.
+                            </div>
+                            <div class="p-2.5 bg-white dark:bg-slate-900 rounded-xl border border-emerald-200 dark:border-slate-700">
+                                <strong class="text-emerald-700 dark:text-emerald-400 block mb-1">CONTINUIDADES:</strong>
+                                El idioma quechua, el trabajo en el ayllu, el uso de andenes, la gastronomía andina (papas, quinua) y la cosmovisión comunitaria.
+                            </div>
+                        </div>
+                    </div>
+
+                    <p>
+                        De regreso al Aula de Innovación Pedagógica de la I.E. N° 0148 en San Juan de Lurigancho, Sophi acarició las cuerdas del quipu. Había comprendido que la historia del Perú no es solo de vencidos o vencedores, sino un proceso complejo de resistencia, mestizaje e identidad que continua vivo hoy en cada peruano.
+                    </p>
+                `,
+                source: {
+                    title: "Relación de Titu Cusi Yupanqui (Inca de Vilcabamba - 1570)",
+                    text: "«Decid a vuestro rey que mi padre Manco Inca fue señor libre de estas tierras y que aunque nos han despojado de nuestro Cusco, en estas montañas de Vilcabamba mantendremos la memoria de nuestros antepasados y nuestras costumbres sagradas...»",
+                    question: "¿Qué demuestra el testimonio del Inca Titu Cusi Yupanqui respecto al espíritu de la resistencia andina?",
+                    options: [
+                        "A) Una total rendición y asimilación a la cultura europea",
+                        "B) La determinación de mantener la soberanía política, la memoria colectiva y las costumbres andinas",
+                        "C) El deseo de emigrar a otros continentes",
+                        "D) La pérdida total del idioma quechua"
+                    ],
+                    correct: 1,
+                    explanation: "¡Correcto! Los incas de Vilcabamba defendieron la identidad, memoria e independencia del pueblo andino."
+                },
+                activity: {
+                    type: "classification",
+                    question: "Clasifica los siguientes elementos según corresponda a Cambios o Continuidades tras la conquista:",
+                    items: [
+                        { text: "Uso del idioma Quechua y cultivo de la papa", type: "continuidad" },
+                        { text: "Creación de las Encomiendas y pago de tributo en moneda", type: "cambio" },
+                        { text: "Práctica de la reciprocidad comunitaria dentro del Ayllu", type: "continuidad" },
+                        { text: "Imposición de la religión católica y prohibición del culto oficial al Inti", type: "cambio" }
+                    ]
+                }
+            }
+        ];
+
+        /* ==========================================================================
+           3. APPLICATION STATE & SOUND SYNTHESIZER (WEB AUDIO API)
+           ========================================================================== */
+        let currentState = {
+            currentChapter: 1,
+            stars: 0,
+            fontSizeLevel: 0, // -1, 0, 1, 2
+            highlights: JSON.parse(localStorage.getItem('mvrht_storybook_highlights') || '[]')
+        };
+
+        // Web Audio API Synthetic Sound Generators (No external URL dependency)
+        const AudioFX = {
+            ctx: null,
+            init() {
+                if (!this.ctx) {
+                    this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+            },
+            playCorrect() {
+                this.init();
+                if (!this.ctx) return;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(523.25, this.ctx.currentTime); // C5
+                osc.frequency.exponentialRampToValueAtTime(659.25, this.ctx.currentTime + 0.15); // E5
+                osc.frequency.exponentialRampToValueAtTime(783.99, this.ctx.currentTime + 0.3); // G5
+                gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.4);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.4);
+            },
+            playError() {
+                this.init();
+                if (!this.ctx) return;
+                const osc = this.ctx.createOscillator();
+                const gain = this.ctx.createGain();
+                osc.type = 'sawtooth';
+                osc.frequency.setValueAtTime(220, this.ctx.currentTime); // A3
+                osc.frequency.linearRampToValueAtTime(130.81, this.ctx.currentTime + 0.25); // C3
+                gain.gain.setValueAtTime(0.2, this.ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.3);
+                osc.connect(gain);
+                gain.connect(this.ctx.destination);
+                osc.start();
+                osc.stop(this.ctx.currentTime + 0.3);
+            },
+            playAchievement() {
+                this.init();
+                if (!this.ctx) return;
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C, E, G, C6
+                notes.forEach((freq, idx) => {
+                    const osc = this.ctx.createOscillator();
+                    const gain = this.ctx.createGain();
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(freq, this.ctx.currentTime + idx * 0.1);
+                    gain.gain.setValueAtTime(0.2, this.ctx.currentTime + idx * 0.1);
+                    gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + idx * 0.1 + 0.3);
+                    osc.connect(gain);
+                    gain.connect(this.ctx.destination);
+                    osc.start(this.ctx.currentTime + idx * 0.1);
+                    osc.stop(this.ctx.currentTime + idx * 0.1 + 0.3);
+                });
+            }
+        };
+
+        /* ==========================================================================
+           4. CORE DOM RENDERERS & EVENT HANDLERS
+           ========================================================================== */
+        document.addEventListener('DOMContentLoaded', () => {
+            initApp();
+        });
+
+        function initApp() {
+            renderChapter(currentState.currentChapter);
+            setupThemeToggle();
+            setupFontResizer();
+            setupHighlighterTools();
+            setupModalEvents();
+            updateProgressBar();
+        }
+
+        function renderChapter(chapId) {
+            const chapData = CHAPTERS.find(c => c.id === chapId);
+            if (!chapData) return;
+
+            currentState.currentChapter = chapId;
+
+            // Update Chapter Sidebar Buttons
+            document.querySelectorAll('.cap-btn').forEach(btn => {
+                const cId = parseInt(btn.getAttribute('data-cap'));
+                if (cId === chapId) {
+                    btn.className = "cap-btn w-full text-left p-3 rounded-xl border border-amber-300 bg-amber-50 dark:bg-slate-800 dark:border-amber-600/50 flex items-center justify-between font-medium transition shadow-sm";
+                } else {
+                    btn.className = "cap-btn w-full text-left p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-800 flex items-center justify-between text-sm transition";
+                }
+            });
+
+            // Update Title & Badge
+            document.getElementById('chapterBadge').innerHTML = chapData.badge;
+            document.getElementById('chapterTitle').innerText = chapData.title;
+
+            // Render Story Content
+            const storyTextBody = document.getElementById('storyTextBody');
+            storyTextBody.innerHTML = chapData.content;
+
+            // Apply saved highlights
+            applySavedHighlights();
+
+            // Render Historical Source
+            renderHistoricalSource(chapData.source);
+
+            // Render Activity
+            renderActivity(chapData.activity);
+
+            // Update Progress Bar
+            updateProgressBar();
+
+            // Scroll Smooth to Top of Content
+            document.getElementById('storyContentCard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* --- Historical Source Section --- */
+        function renderHistoricalSource(source) {
+            const sourceContent = document.getElementById('sourceContent');
+            const sourceQuestionBox = document.getElementById('sourceQuestionBox');
+
+            sourceContent.innerHTML = `
+                <p class="font-bold text-amber-900 dark:text-amber-300 mb-1 font-sans text-xs uppercase tracking-wide">
+                    <i class="fa-solid fa-feather-pointed mr-1"></i> ${source.title}
+                </p>
+                ${source.text}
+            `;
+
+            sourceQuestionBox.innerHTML = `
+                <p class="font-semibold text-slate-800 dark:text-slate-200 text-sm">
+                    <i class="fa-solid fa-circle-question text-amber-600 mr-1.5"></i> Pregunta de Análisis Fuente: ${source.question}
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2" id="sourceOptions">
+                    ${source.options.map((opt, idx) => `
+                        <button onclick="checkSourceAnswer(${idx}, ${source.correct}, '${encodeURIComponent(source.explanation)}')" 
+                            class="source-opt-btn p-2.5 text-left text-xs rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-amber-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">
+                            ${opt}
+                        </button>
+                    `).join('')}
+                </div>
+                <div id="sourceFeedback" class="hidden text-xs p-3 rounded-xl"></div>
+            `;
+        }
+
+        window.checkSourceAnswer = function(selectedIdx, correctIdx, explanationEscaped) {
+            const explanation = decodeURIComponent(explanationEscaped);
+            const feedback = document.getElementById('sourceFeedback');
+            const btns = document.querySelectorAll('.source-opt-btn');
+
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-red-100', 'text-red-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200', 'dark:bg-red-900/50', 'dark:text-red-200');
+
+            if (selectedIdx === correctIdx) {
+                AudioFX.playCorrect();
+                addStars(5);
+                feedback.classList.add('bg-emerald-100', 'text-emerald-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> <strong>¡Correcto (+5 estrellas)!</strong> ${explanation}`;
+                btns[selectedIdx].classList.add('bg-emerald-200', 'border-emerald-500', 'dark:bg-emerald-800');
+            } else {
+                AudioFX.playError();
+                feedback.classList.add('bg-red-100', 'text-red-900', 'dark:bg-red-900/50', 'dark:text-red-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> <strong>Inténtalo de nuevo.</strong> Vuelve a leer la fuente histórica con atención.`;
+                btns[selectedIdx].classList.add('bg-red-200', 'border-red-500', 'dark:bg-red-800');
+            }
+        };
+
+        /* --- Gamified Activity Renderer --- */
+        function renderActivity(activity) {
+            const container = document.getElementById('activityContainer');
+
+            if (activity.type === 'mcq') {
+                container.innerHTML = `
+                    <div class="space-y-3">
+                        <h4 class="font-semibold text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                            <i class="fa-solid fa-list-check text-inca-terracotta mr-1.5"></i> ${activity.question}
+                        </h4>
+                        <div class="space-y-2">
+                            ${activity.options.map((opt, idx) => `
+                                <button onclick="checkMCQActivity(${idx}, ${activity.correct}, '${encodeURIComponent(activity.explanation)}')" 
+                                    class="mcq-act-btn w-full text-left p-3 text-xs sm:text-sm rounded-xl border border-slate-200 dark:border-slate-700 hover:bg-amber-50 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-medium transition">
+                                    ${opt}
+                                </button>
+                            `).join('')}
+                        </div>
+                        <div id="activityFeedback" class="hidden text-xs sm:text-sm p-3 rounded-xl"></div>
+                    </div>
+                `;
+            } else if (activity.type === 'ordering') {
+                container.innerHTML = `
+                    <div class="space-y-3">
+                        <h4 class="font-semibold text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                            <i class="fa-solid fa-arrow-down-1-9 text-inca-terracotta mr-1.5"></i> ${activity.question}
+                        </h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Haz clic en los acontecimientos en el orden cronológico correcto (de 1 a 4):</p>
+                        <div class="space-y-2" id="orderingBox">
+                            ${shuffleArray([...activity.items]).map((item) => `
+                                <div data-id="${item.id}" onclick="selectOrderingItem(this)" 
+                                    class="order-item cursor-pointer p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-amber-50 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300 flex items-center justify-between transition">
+                                    <span>${item.text}</span>
+                                    <span class="order-badge w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs flex items-center justify-center font-bold">?</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="flex space-x-2 pt-2">
+                            <button onclick="verifyOrdering()" class="bg-inca-terracotta text-white px-4 py-2 rounded-xl text-xs font-bold hover:bg-amber-800 transition">
+                                <i class="fa-solid fa-check mr-1"></i> Verificar Orden
+                            </button>
+                            <button onclick="resetOrdering()" class="bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300 px-4 py-2 rounded-xl text-xs font-bold hover:bg-slate-300 transition">
+                                Reiniciar
+                            </button>
+                        </div>
+                        <div id="activityFeedback" class="hidden text-xs sm:text-sm p-3 rounded-xl"></div>
+                    </div>
+                `;
+            } else if (activity.type === 'classification') {
+                container.innerHTML = `
+                    <div class="space-y-3">
+                        <h4 class="font-semibold text-slate-800 dark:text-slate-200 text-sm sm:text-base">
+                            <i class="fa-solid fa-layer-group text-inca-terracotta mr-1.5"></i> ${activity.question}
+                        </h4>
+                        <div class="space-y-3" id="classBox">
+                            ${activity.items.map((item, idx) => `
+                                <div class="p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 flex flex-wrap items-center justify-between gap-2">
+                                    <span class="text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-300">${item.text}</span>
+                                    <div class="flex space-x-2">
+                                        <button onclick="classifyItem(${idx}, 'cambio', '${item.type}')" class="class-btn-${idx} px-3 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-600 hover:bg-amber-100 dark:hover:bg-amber-900/40 text-slate-700 dark:text-slate-300">
+                                            Cambio
+                                        </button>
+                                        <button onclick="classifyItem(${idx}, 'continuidad', '${item.type}')" class="class-btn-${idx} px-3 py-1 rounded-lg text-xs font-bold border border-slate-300 dark:border-slate-600 hover:bg-emerald-100 dark:hover:bg-emerald-900/40 text-slate-700 dark:text-slate-300">
+                                            Continuidad
+                                        </button>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div id="activityFeedback" class="hidden text-xs sm:text-sm p-3 rounded-xl"></div>
+                    </div>
+                `;
+            }
+        }
+
+        /* --- Gamification Activity Verification Functions --- */
+        window.checkMCQActivity = function(selectedIdx, correctIdx, explanationEscaped) {
+            const explanation = decodeURIComponent(explanationEscaped);
+            const feedback = document.getElementById('activityFeedback');
+            const btns = document.querySelectorAll('.mcq-act-btn');
+
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-red-100', 'text-red-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200', 'dark:bg-red-900/50', 'dark:text-red-200');
+
+            if (selectedIdx === correctIdx) {
+                AudioFX.playAchievement();
+                addStars(10);
+                feedback.classList.add('bg-emerald-100', 'text-emerald-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200');
+                feedback.innerHTML = `<i class="fa-solid fa-trophy text-amber-500 mr-1"></i> <strong>¡Excelente (+10 estrellas)!</strong> ${explanation}`;
+                btns[selectedIdx].classList.add('bg-emerald-200', 'border-emerald-500', 'dark:bg-emerald-800');
+            } else {
+                AudioFX.playError();
+                feedback.classList.add('bg-red-100', 'text-red-900', 'dark:bg-red-900/50', 'dark:text-red-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> <strong>Respuesta incorrecta.</strong> Revisa el texto del capítulo y vuelve a intentar.`;
+                btns[selectedIdx].classList.add('bg-red-200', 'border-red-500', 'dark:bg-red-800');
+            }
+        };
+
+        let orderingSelection = [];
+        window.selectOrderingItem = function(el) {
+            const id = el.getAttribute('data-id');
+            if (orderingSelection.includes(id)) return;
+
+            orderingSelection.push(id);
+            const badge = el.querySelector('.order-badge');
+            badge.innerText = orderingSelection.length;
+            badge.className = "order-badge w-6 h-6 rounded-full bg-amber-500 text-white text-xs flex items-center justify-center font-bold";
+            el.classList.add('border-amber-500', 'bg-amber-50');
+        };
+
+        window.verifyOrdering = function() {
+            const feedback = document.getElementById('activityFeedback');
+            feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-red-100', 'text-red-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200', 'dark:bg-red-900/50', 'dark:text-red-200');
+
+            if (orderingSelection.length < 4) {
+                AudioFX.playError();
+                feedback.classList.add('bg-red-100', 'text-red-900', 'dark:bg-red-900/50', 'dark:text-red-200');
+                feedback.innerHTML = `Selecciona todos los 4 acontecimientos antes de verificar.`;
+                return;
+            }
+
+            const isCorrect = orderingSelection.every((val, index) => val === String(index + 1));
+            if (isCorrect) {
+                AudioFX.playAchievement();
+                addStars(10);
+                feedback.classList.add('bg-emerald-100', 'text-emerald-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200');
+                feedback.innerHTML = `<i class="fa-solid fa-trophy text-amber-500 mr-1"></i> <strong>¡Perfecto (+10 estrellas)!</strong> Has ordenado la secuencia histórica cronológicamente de forma exacta.`;
+            } else {
+                AudioFX.playError();
+                feedback.classList.add('bg-red-100', 'text-red-900', 'dark:bg-red-900/50', 'dark:text-red-200');
+                feedback.innerHTML = `<i class="fa-solid fa-circle-xmark text-red-600 mr-1"></i> El orden no es correcto. Haz clic en "Reiniciar" e inténtalo de nuevo.`;
+            }
+        };
+
+        window.resetOrdering = function() {
+            orderingSelection = [];
+            const container = document.querySelectorAll('#orderingBox .order-item');
+            container.forEach(el => {
+                el.classList.remove('border-amber-500', 'bg-amber-50');
+                const badge = el.querySelector('.order-badge');
+                badge.innerText = '?';
+                badge.className = "order-badge w-6 h-6 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs flex items-center justify-center font-bold";
+            });
+            document.getElementById('activityFeedback').classList.add('hidden');
+        };
+
+        let classifiedCount = 0;
+        let classificationCorrectCount = 0;
+        window.classifyItem = function(idx, userChoice, actualType) {
+            const btns = document.querySelectorAll(`.class-btn-${idx}`);
+            btns.forEach(b => b.disabled = true);
+
+            if (userChoice === actualType) {
+                AudioFX.playCorrect();
+                classificationCorrectCount++;
+            } else {
+                AudioFX.playError();
+            }
+
+            classifiedCount++;
+            if (classifiedCount === 4) {
+                const feedback = document.getElementById('activityFeedback');
+                feedback.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-900', 'bg-red-100', 'text-red-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200', 'dark:bg-red-900/50', 'dark:text-red-200');
+
+                if (classificationCorrectCount >= 3) {
+                    AudioFX.playAchievement();
+                    addStars(10);
+                    feedback.classList.add('bg-emerald-100', 'text-emerald-900', 'dark:bg-emerald-900/50', 'dark:text-emerald-200');
+                    feedback.innerHTML = `<i class="fa-solid fa-trophy text-amber-500 mr-1"></i> <strong>¡Gran trabajo (+10 estrellas)!</strong> Lograste ${classificationCorrectCount}/4 aciertos identificando cambios y continuidades.`;
+                } else {
+                    feedback.classList.add('bg-red-100', 'text-red-900', 'dark:bg-red-900/50', 'dark:text-red-200');
+                    feedback.innerHTML = `Obtuviste ${classificationCorrectCount}/4 aciertos. Repasa el cuadro conceptual arriba.`;
+                }
+            }
+        };
+
+        function addStars(num) {
+            currentState.stars += num;
+            document.getElementById('starCounter').innerText = currentState.stars;
+        }
+
+        function updateProgressBar() {
+            const progress = (currentState.currentChapter / CHAPTERS.length) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+        }
+
+        /* ==========================================================================
+           5. GLOSSARY & WEB SPEECH API (TTS) MODAL
+           ========================================================================== */
+        let currentTTSTerm = "";
+
+        window.openGlossary = function(termKey) {
+            const data = GLOSSARY[termKey];
+            if (!data) return;
+
+            currentTTSTerm = data.term;
+            document.getElementById('modalTerm').innerText = data.term;
+            document.getElementById('modalEtymology').innerText = data.etymology;
+            document.getElementById('modalDefinition').innerText = data.definition;
+            document.getElementById('modalContext').innerText = data.context;
+            document.getElementById('modalExample').innerText = `"${data.example}"`;
+
+            document.getElementById('glossaryModal').classList.remove('hidden');
+        };
+
+        function setupModalEvents() {
+            const closeModal = () => document.getElementById('glossaryModal').classList.add('hidden');
+            document.getElementById('btnCloseModal').addEventListener('click', closeModal);
+            document.getElementById('btnCloseModalBottom').addEventListener('click', closeModal);
+
+            // Web Speech API Text-To-Speech
+            document.getElementById('btnTTS').addEventListener('click', () => {
+                if ('speechSynthesis' in window) {
+                    window.speechSynthesis.cancel(); // Stop ongoing audio
+                    const textToRead = `${currentTTSTerm}. ${document.getElementById('modalDefinition').innerText}`;
+                    const utterance = new SpeechSynthesisUtterance(textToRead);
+                    utterance.lang = 'es-PE'; // Peruvian Spanish accent if available
+                    utterance.rate = 0.9;
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    alert("Tu navegador no soporta síntesis de voz (TTS).");
+                }
+            });
+        }
+
+        /* ==========================================================================
+           6. HIGHLIGHTING TOOLBOX & TEXT RESIZING
+           ========================================================================== */
+        function setupHighlighterTools() {
+            document.getElementById('hlYellowBtn').addEventListener('click', () => applyHighlight('hl-yellow'));
+            document.getElementById('hlGreenBtn').addEventListener('click', () => applyHighlight('hl-green'));
+            document.getElementById('hlBlueBtn').addEventListener('click', () => applyHighlight('hl-blue'));
+            document.getElementById('btnClearHL').addEventListener('click', clearHighlights);
+
+            // Chapter nav click listeners
+            document.querySelectorAll('.cap-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const cId = parseInt(e.currentTarget.getAttribute('data-cap'));
+                    renderChapter(cId);
+                });
+            });
+        }
+
+        function applyHighlight(colorClass) {
+            const selection = window.getSelection();
+            if (!selection.rangeCount || selection.isCollapsed) return;
+
+            const range = selection.getRangeAt(0);
+            const selectedText = selection.toString();
+
+            if (selectedText.trim().length === 0) return;
+
+            const span = document.createElement('span');
+            span.className = colorClass;
+            span.appendChild(range.extractContents());
+            range.insertNode(span);
+
+            // Save state
+            saveHighlightsState();
+            selection.removeAllRanges();
+        }
+
+        function saveHighlightsState() {
+            const storyHtml = document.getElementById('storyTextBody').innerHTML;
+            localStorage.setItem(`mvrht_cap_${currentState.currentChapter}_hl`, storyHtml);
+        }
+
+        function applySavedHighlights() {
+            const savedHtml = localStorage.getItem(`mvrht_cap_${currentState.currentChapter}_hl`);
+            if (savedHtml) {
+                document.getElementById('storyTextBody').innerHTML = savedHtml;
+            }
+        }
+
+        function clearHighlights() {
+            localStorage.removeItem(`mvrht_cap_${currentState.currentChapter}_hl`);
+            renderChapter(currentState.currentChapter);
+        }
+
+        function setupFontResizer() {
+            const storyText = document.getElementById('storyTextBody');
+            
+            document.getElementById('btnFontInc').addEventListener('click', () => {
+                if (currentState.fontSizeLevel < 2) currentState.fontSizeLevel++;
+                updateFontSize();
+            });
+
+            document.getElementById('btnFontDec').addEventListener('click', () => {
+                if (currentState.fontSizeLevel > -1) currentState.fontSizeLevel--;
+                updateFontSize();
+            });
+
+            document.getElementById('btnFontReset').addEventListener('click', () => {
+                currentState.fontSizeLevel = 0;
+                updateFontSize();
+            });
+        }
+
+        function updateFontSize() {
+            const storyText = document.getElementById('storyTextBody');
+            storyText.classList.remove('text-sm', 'text-base', 'text-lg', 'text-xl');
+
+            if (currentState.fontSizeLevel === -1) storyText.classList.add('text-sm');
+            else if (currentState.fontSizeLevel === 0) storyText.classList.add('text-base');
+            else if (currentState.fontSizeLevel === 1) storyText.classList.add('text-lg');
+            else if (currentState.fontSizeLevel === 2) storyText.classList.add('text-xl');
+        }
+
+        /* ==========================================================================
+           7. THEME TOGGLE (DARK / LIGHT MODE)
+           ========================================================================== */
+        function setupThemeToggle() {
+            const btn = document.getElementById('themeToggleBtn');
+            btn.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+        }
+
+        // Helper shuffle function
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+    </script>
+</body>
+</html>
